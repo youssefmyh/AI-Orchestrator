@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommender-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: recommender
+  template:
+    metadata:
+      labels:
+        app: recommender
+    spec:
+      containers:
+      - name: recommender
+        image: my-recommender-service
+        ports:
+        - containerPort: 8001

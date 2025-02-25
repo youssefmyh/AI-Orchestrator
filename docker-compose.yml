@@ -1,0 +1,13 @@
+services:
+  recommender:
+    build: ./recommender_service
+    ports:
+      - "8001:8001"
+  fraud_detection:
+    build: ./fraud_detection_service
+    ports:
+      - "8002:8002"
+  chatbot:
+    build: ./chatbot_service
+    ports:
+      - "8003:8003"
