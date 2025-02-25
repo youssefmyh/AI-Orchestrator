@@ -6,13 +6,15 @@ app = FastAPI()
 
 # Device Selection: CUDA → MPS (Mac) → CPU
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+print(f"Using device: {device}")
 
 # Load Tokenizer & Model
 model_name = "NousResearch/Llama-2-7b-chat-hf"
+
 tokenizer = AutoTokenizer.from_pretrained(model_name)
+
 model = AutoModelForCausalLM.from_pretrained(
-    model_name, torch_dtype=torch.float16, device_map="auto"
-).eval().to(device)
+    model_name, torch_dtype=torch.float16, device_map="auto").to(device).eval()
 
 @app.get("/recommend")
 def recommend(user_id: int):
@@ -23,9 +25,9 @@ def recommend(user_id: int):
         inputs = tokenizer(user_input, return_tensors="pt").to(device)
 
         with torch.no_grad():
-            outputs = model(**inputs)
+            outputs = model.generate(**inputs, max_new_tokens=50)
 
-        recommendations = outputs.last_hidden_state.mean(dim=1).tolist()
+        recommendations = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         return {"user_id": user_id, "recommendations": recommendations}
 

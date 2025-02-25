@@ -5,14 +5,24 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 app = FastAPI()
 
 model_name = "NousResearch/Llama-2-7b-chat-hf"
+
+device = (
+    "cuda" if torch.cuda.is_available() 
+    else "mps" if torch.backends.mps.is_available() 
+    else "cpu"
+)
+
+print(f"Using device: {device}")
+
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, device_map="auto").eval()
+model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, device_map="auto").to(device).eval()
 
 @app.post("/detect_fraud")
 def detect_fraud(transaction: dict):
-    transaction_text = f"Transaction: {transaction['description']}. Is it 'fraud' or 'not fraud'?"
+    description = transaction.get("description", "No description provided")
+    transaction_text = f"Transaction: {description}. Is it 'fraud' or 'not fraud'?"
 
-    inputs = tokenizer(transaction_text, return_tensors="pt").to("cuda" if torch.cuda.is_available() else "cpu")
+    inputs = tokenizer(transaction_text, return_tensors="pt").to(device)
 
     with torch.no_grad():
         outputs = model.generate(**inputs, max_new_tokens=5)
