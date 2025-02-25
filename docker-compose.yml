@@ -1,6 +1,6 @@
 services:
   recommender:
-    build: ./recommender_service
+    build: ./recommender-service
     ports:
       - "8001:8001"
   fraud_detection:
