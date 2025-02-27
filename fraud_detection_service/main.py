@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import uvicorn
 
 app = FastAPI()
 
@@ -31,3 +32,6 @@ def detect_fraud(transaction: dict):
     is_fraud = "fraud" in response
 
     return {"fraud": is_fraud, "response": response}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8002)

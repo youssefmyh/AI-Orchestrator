@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import uvicorn
 
 app = FastAPI()
 
@@ -33,3 +34,6 @@ def recommend(user_id: int):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8001)

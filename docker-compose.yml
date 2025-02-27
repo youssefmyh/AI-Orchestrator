@@ -1,8 +1,10 @@
+version: '3.8'
 services:
   recommender:
     build: ./recommender-service
     ports:
       - "8001:8001"
+    restart: always
   fraud_detection:
     build: ./fraud_detection_service
     ports:

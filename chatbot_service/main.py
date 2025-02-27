@@ -2,6 +2,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -30,3 +31,7 @@ def chat(request: ChatRequest):
     
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return {"response": response}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8003)
