@@ -99,7 +99,7 @@ To run **AI-Orchestrator** efficiently, ensure your system meets the following h
 - Recommended: **32GB RAM** for handling multiple AI services efficiently.  
 
 ### **3. Storage**  
-- **Minimum**: 50GB free space  
+- **Minimum**: 50GB free space  per model
 - **Recommended**: **SSD (NVMe preferred)** for faster data access and improved system responsiveness.  
 
 ### **4. Networking**  
