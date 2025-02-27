@@ -3,3 +3,4 @@ uvicorn
 joblib
 scikit-learn
 accelerate
+transformers

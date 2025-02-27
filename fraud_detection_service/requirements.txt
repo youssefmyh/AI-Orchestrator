@@ -4,3 +4,4 @@ joblib
 numpy
 scikit-learn
 accelerate
+transformers
