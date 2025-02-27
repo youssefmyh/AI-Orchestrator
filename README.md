@@ -85,17 +85,6 @@ kubectl apply -f k8s/
 
 ---
 
-## ⚠️ Important Notes
-
-- Ensure **Docker Desktop** is running before using `docker compose up`.
-- Before downloading models, update `scripts/download_models.py` with the correct model URLs.
-- You can modify the **Dockerfile** to match your specific requirements.
-
----
-
-Here's a refined version of the hardware requirements section that you can add to your README:  
-
----
 
 ## **Hardware Requirements**  
 
@@ -130,5 +119,12 @@ Ensure the following are installed:
 For production or large-scale deployments:  
 - Consider **cloud-based solutions (AWS/GCP/Azure)** for dynamic scaling.  
 - Use **load balancing** and **Kubernetes clusters** to optimize resource utilization.  
+
+---
+## ⚠️ Important Notes
+
+- Ensure **Docker Desktop** is running before using `docker compose up`.
+- Before downloading models, update `scripts/download_models.py` with the correct model URLs.
+- You can modify the **Dockerfile** to match your specific requirements.
 
 ---
