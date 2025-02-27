@@ -85,6 +85,42 @@ kubectl apply -f k8s/
 
 ---
 
+
+## **Hardware Requirements**  
+
+To run **AI-Orchestrator** efficiently, ensure your system meets the following hardware specifications:  
+
+### **1. Processor (CPU/GPU)**  
+- **CPU**: Multi-core processor (4+ cores, e.g., Intel i7/AMD Ryzen 7) for handling concurrent requests.  
+- **GPU (Optional)**: Recommended for AI models requiring acceleration (e.g., deep learning). An **NVIDIA GPU with CUDA support (8GB+ VRAM)** is ideal.  
+
+### **2. Memory (RAM)**  
+- Minimum: **16GB RAM**  
+- Recommended: **32GB RAM** for handling multiple AI services efficiently.  
+
+### **3. Storage**  
+- **Minimum**: 50GB free space  per model
+- **Recommended**: **SSD (NVMe preferred)** for faster data access and improved system responsiveness.  
+
+### **4. Networking**  
+- **Stable high-speed internet** (especially if using cloud-based AI services or real-time processing).  
+
+### **5. Operating System**  
+- **Linux (Ubuntu 20.04+ recommended)** or **Windows 10/11** with **WSL2** for better compatibility with Docker and Kubernetes.  
+
+### **6. Software Dependencies**  
+Ensure the following are installed:  
+- **Docker** (Latest version) for containerized deployments.  
+- **Kubernetes** (Optional, for orchestration at scale).  
+- **Python 3.8+** for AI model execution and service scripts.  
+- **GPU Drivers & CUDA** (If using GPU for acceleration).  
+
+### **7. Scalability Considerations**  
+For production or large-scale deployments:  
+- Consider **cloud-based solutions (AWS/GCP/Azure)** for dynamic scaling.  
+- Use **load balancing** and **Kubernetes clusters** to optimize resource utilization.  
+
+---
 ## ⚠️ Important Notes
 
 - Ensure **Docker Desktop** is running before using `docker compose up`.
