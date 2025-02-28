@@ -21,6 +21,7 @@ model = AutoModelForCausalLM.from_pretrained(
 def read_root():
     return {"Welcome": "recommender-service is running!"}
 
+
 @app.get("/recommend")
 def recommend(user_id: int):
     try:
