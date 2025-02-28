@@ -18,6 +18,10 @@ print(f"Using device: {device}")
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, device_map="auto").to(device).eval()
 
+@app.get("/")
+def read_root():
+    return {"Welcome": "fraud_detection_service is running!"}
+
 @app.post("/detect_fraud")
 def detect_fraud(transaction: dict):
     description = transaction.get("description", "No description provided")
