@@ -22,6 +22,10 @@ model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float
 class ChatRequest(BaseModel):
     user_input: str
 
+@app.get("/")
+def read_root():
+    return {"Welcome": "Chatbot Service is running!"}
+
 @app.post("/chat")
 def chat(request: ChatRequest):
     inputs = tokenizer(request.user_input, return_tensors="pt").to(device)
